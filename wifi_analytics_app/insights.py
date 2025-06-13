@@ -4,7 +4,7 @@ from sklearn.preprocessing import LabelEncoder
 import psycopg2
 
 def load_data():
-    conn = psycopg2.connect(host="localhost", database="wifi_analytics", user="your_user", password="your_password")
+    conn = psycopg2.connect(st.secrets["DB_URL"], sslmode="require")
     df = pd.read_sql("SELECT * FROM wifi_logs", conn)
     conn.close()
     return df
